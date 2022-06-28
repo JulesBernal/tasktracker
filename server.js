@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 const bodyParser= require('body-parser');
 const connection= 'mongodb+srv://taigatop:MuzvoMZhYmXLSgTH@cluster0.qat9t7x.mongodb.net/?retryWrites=true&w=majority'
 const MongoClient=require('mongodb').MongoClient;
-const port= process.env.PORT || 5000
+const port= process.env.PORT || 5000;
 MongoClient.connect(connection,{ useUnifiedTopology: true })
 .then(client =>{
     console.log('Connected to Database');
@@ -68,7 +68,7 @@ MongoClient.connect(connection,{ useUnifiedTopology: true })
         res.json('Deleted Task')
         });
     });
-    app.listen(process.env.PORT || 3000,() =>{
+    app.listen(port,() =>{
     console.log(`Server listening on ${port}`);
     });
 });
