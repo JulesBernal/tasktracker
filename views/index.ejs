@@ -28,11 +28,10 @@
     <article id="taskList">
         <h2>Tasks</h2>
         <% for (var i = 0; i < taskEntry.length; i++){%>
-        <section class="taskEntries">
-            <p><%= taskEntry[i].task %></p>
-            <button id="editButton">Edit</button>
-            <button id="deleteButton">Delete</button>
-            
+        <section class="taskEntries" id="sec<%=i%>">
+            <p id="p_<%= i %>"><%= taskEntry[i].taskEntry %></p>
+            <button class="editButton" value="edit_<%= i %>">Edit</button>
+            <button class="deleteButton" value="delete_<%= i %>">Delete</button>
         </section>
         <% } %>
     </article>

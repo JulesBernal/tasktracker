@@ -3,10 +3,9 @@ const app = express();
 const path = require('path');
 const mongoose=require('mongoose');
 const bodyParser= require('body-parser');
-
 const connection= 'mongodb+srv://taigatop:MuzvoMZhYmXLSgTH@cluster0.qat9t7x.mongodb.net/?retryWrites=true&w=majority'
-
 const MongoClient=require('mongodb').MongoClient;
+
 MongoClient.connect(connection,{ useUnifiedTopology: true })
 .then(client =>{
     console.log('Connected to Database');
@@ -35,39 +34,33 @@ MongoClient.connect(connection,{ useUnifiedTopology: true })
         db.collection('listCollection').find().toArray()
         .then(task =>{
             res.render('index.ejs',{taskEntry:task});
-            console.log(`wooo`);
         })
         
     })
 
     app.post('/post-lists',function(req,res){
-
-        // var taskP =req.params.taskEntry;
-        // mongoose.model('post-lists').create({
-        //     taskEntry: taskP
-        // })
-
         tasksCollection.insertOne(req.body)
             .then(result=>{
-                console.log(result)
+                res.redirect('/');
             })
-        const input = req.body;
-
-        console.log(input);
     });
+
     app.put('/post-lists',function(req,res){
+        console.log(req.body);
         tasksCollection.findOneAndUpdate(
-            {},
-            {
-                taskEntry: req.body.taskEntry
+            {taskEntry: req.body.taskEntryOriginal},
+            { 
+                $set:{
+                    taskEntry: req.body.taskEntryEdit
+                }
             })
             .then(task =>res.json('Success'))
     })
+
     app.delete('/post-lists',function(req,res){
         tasksCollection.deleteOne({
             taskEntry: req.body.taskEntry
         })
-    
     .then(result =>{
         if(result.deletedCount === 0){
             return res.json('No task to delete');

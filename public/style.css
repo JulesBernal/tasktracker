@@ -4,7 +4,12 @@ main{
     /* width: min(100%-2rem); */
     display:flex;
     flex-direction: column;
-    
+    border: 2px solid;
+    border-radius:1rem;
+    background-image:linear-gradient(lightgreen,teal);
+    justify-content: center;
+    text-align:center;
+    /* height:min(300,) */
 }
 #taskList{
     display:flex;
@@ -12,15 +17,25 @@ main{
     overflow:auto;
     /* width: min(100%-2rem); */
     margin-inline:auto;
-    background-color: white;
-    width:100%;
+    width:80%;
     height:80vh;
+    /* justify-content:center; */
 }
 .taskEntries{
     display:flex;
     flex-direction: row;
+    border:1px solid;
+    margin-bottom: 2px;
+    background-color:white;
 }
+.editButton{
+    margin-left:auto
+}
+
 html{
     height:100%;
     background-image:linear-gradient(teal,lightgreen);
+}
+p{
+    margin-left:.5rem;
 }
