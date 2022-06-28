@@ -68,7 +68,7 @@ MongoClient.connect(connection,{ useUnifiedTopology: true })
         res.json('Deleted Task')
         });
     });
-    app.listen(port,() =>{
+    app.listen(process.env.PORT || 3000,() =>{
     console.log(`Server listening on ${port}`);
     });
 });
